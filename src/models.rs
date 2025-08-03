@@ -12,6 +12,11 @@ pub struct Message {
     /// Custom data payload.
     pub data: Option<serde_json::Value>,
     // Add other FCM message fields as needed (e.g., condition, priority)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub android: Option<AndroidConfig>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub apns: Option<ApnsConfig>,
 }
 
 /// Represents a notification payload within an FCM message.
@@ -68,4 +73,22 @@ pub struct ErrorResponse {
     pub status: String,
     /// Additional details about the error.
     pub details: Vec<Value>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct AndroidConfig {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub priority: Option<String>, // "high" or "normal"
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ApnsConfig {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub headers: Option<ApnsHeaders>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ApnsHeaders {
+    #[serde(rename = "apns-priority", skip_serializing_if = "Option::is_none")]
+    pub apns_priority: Option<String>, // "10" or "5"
 }
