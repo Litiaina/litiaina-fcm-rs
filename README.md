@@ -1,7 +1,7 @@
 
 # Firebase Cloud Messaging API v1 Rust Crate
 
-This Rust crate provides a convenient way to send notifications using Firebase Cloud Messaging (FCM) API v1. It leverages async/await for asynchronous operations and supports loading service account credentials from a JSON file. Original fork from https://github.com/calalalizade/fcm-rs
+This Rust crate provides a convenient way to send notifications using Firebase Cloud Messaging (FCM) API v1. It leverages async/await for asynchronous operations and supports loading service account credentials from a JSON file.
 
 ## Installation
 
