@@ -28,12 +28,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Define the message with the target device token and notification details
     let message = Message {
-        token: Some("your_device_token".to_string()),
+        token: Some(token),
         notification: Some(Notification {
-            title: Some("Hello from Rust!".to_string()),
-            body: Some("This is a test notification.".to_string()),
+            title: Some(title.clone()),
+            body: Some(body.clone()),
         }),
         data: None,
+        android: Some(AndroidConfig {
+            priority: Some("high".into()),
+        }),
+        apns: Some(ApnsConfig {
+            headers: Some(ApnsHeaders {
+                apns_priority: Some("10".into()),
+            }),
+        }),
     };
 
     // Send the message and handle the response
